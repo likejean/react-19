@@ -10,14 +10,10 @@ const friends = [
 	{name: "Bob", age: 35},
 	{name: "Alice", age: 28},
 	{name: "Charlie", age: 22},
-	{name: "Dave", age: 27},
-	{name: "Eve", age: 29},
-	{name: "Frank", age: 31},
-	{name: "Grace", age: 26},
-	{name: "Heidi", age: 24}
+
 ];
 
-function Main() {
+function Hooks() {
 	const [count, setCount] = useState(0);
 	const [friendsList, setFriendsList] = useState(friends);
 	const [friendName, setFriendName] = useState("");
@@ -26,23 +22,26 @@ function Main() {
 	const decrement = () => setCount(count - 1);
 	const reset = () => setCount(0);
 
-	const handleInputChange = (e) => {
-		setFriendName(e.target.value);
-	}
+	// Function to handle input change and update the state
+	const handleInputChange = (e) => setFriendName(e.target.value);
+
+	// Function to add a new friend to the list
+	// and reset the input field
 	const addFriend = () => {
 		if (friendName.trim() !== "") {
 			const newFriend = { name: friendName, age: Math.floor(Math.random() * 100) };
 			setFriendsList([...friendsList, newFriend]);
 			setFriendName("");
 		}
-
-		console.log(friendsList);
 	}
 
+	
 	return (	
 		<main>
 			<h1>Friends List</h1>
 			<div className="d-flex flex-row">
+
+			
 			{ friendsList.map((friend, index) => (
 				<div key={index} className="card-body text-center col-sm-3 m-2" style={{border: "1px solid black", borderRadius: "10px", backgroundColor: "lightblue"}}>
 					<div className="row" style={{fontSize: 15}}><span>{index + 1}</span></div>
@@ -51,7 +50,7 @@ function Main() {
 				</div>
 			))}
 			</div>
-			
+			c
 			
 			<div className="col-sm-12 mt-3 text-center">
 				
@@ -73,4 +72,4 @@ function Main() {
 	)
 }
 
-export default Main;
+export default Hooks;
