@@ -2,10 +2,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import Sensors from "./components/Sensors";
+import Login from "./components/Login";
 
 const App = () => {
 	return (
 		<>
+		    <Login />
 			<Sensors />
 		</>
 	)
