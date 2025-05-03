@@ -1,0 +1,39 @@
+h1 {
+	color: #4CAF50;
+	font-size: 4em;
+	font-weight: bold;
+	margin: 0.5em 0;
+	text-align: center;
+}
+
+.calibrations-icon, .loading-gears{
+	color: #4CAF50;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0.5em 0;
+	text-align: center;
+	cursor: pointer;
+}
+
+.certificate-icon {
+	color: #4CAF50;
+	font-size: 1.5em;
+	text-align: center;
+	margin: 0;
+}
+
+.login-session-expired {
+	color: red;
+	font-size: larger;
+}
+
+.cal-list-item {
+	background-color: aliceblue;
+	border-radius: 15px;
+	padding: 10px 0px;
+}
+
+.sensor-info-span {
+	color:#4CAF50;
+	font-weight: bold;
+}
