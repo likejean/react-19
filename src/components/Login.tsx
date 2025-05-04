@@ -23,7 +23,6 @@ const Login = () => {
 
 	useEffect(() => {
 		if (isReload) {
-			console.log("Page reloaded");
 			localStorage.removeItem("token");	
 			localStorage.removeItem("userId");
 			localStorage.removeItem("email");
@@ -32,11 +31,7 @@ const Login = () => {
 		}
 	}, [isReload]);
 	
-    // useEffect(() => {
-
-	// 	window.location.reload(); // Reload the page to reflect the logout
-	// }, []);
-	// Function to handle login
+  
 	// It prevents the default form submission behavior and sends a POST request to the server with the email and password.
 	const handleLogin = async (e: { preventDefault: () => void; }) => {
 		e.preventDefault();	
@@ -58,12 +53,12 @@ const Login = () => {
 		})
 		
 		const data = await response.json();
-		if (response.status === 200) {			
+		if (response.status === 200) {	
 			localStorage.setItem("token", data.token);
-			localStorage.setItem("userId", data.userId);
-			localStorage.setItem("email", email);	
+			localStorage.setItem("userId", data.user.userId);
+			localStorage.setItem("email", data.user.email);	
 			setToken(data.token);		
-			navigate("/"); // Redirect to the login page after logout
+			navigate("/sensors", { state: { email: data.user.email, userId: data.user.userId } }); // Redirect to the login page after logout
 			window.location.reload(); // Reload the page to reflect the login
 		}else{
 			alert("Login failed. Please check your credentials.");

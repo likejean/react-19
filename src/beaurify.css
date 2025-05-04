@@ -15,8 +15,15 @@ h1 {
 	cursor: pointer;
 }
 
-.certificate-icon {
+.valid-certificate-icon {
 	color: #4CAF50;
+	font-size: 1.5em;
+	text-align: center;
+	margin: 0;
+}
+
+.expired-certificate-icon {
+	color: #fc0707;
 	font-size: 1.5em;
 	text-align: center;
 	margin: 0;
@@ -27,13 +34,27 @@ h1 {
 	font-size: larger;
 }
 
-.cal-list-item {
+.cal-list-item, .cal-note {
 	background-color: aliceblue;
 	border-radius: 15px;
-	padding: 10px 0px;
+	padding: 10px;
 }
 
 .sensor-info-span {
 	color:#4CAF50;
 	font-weight: bold;
+
+}
+
+.user-login-wrapper {
+	width: 50%;
+	color: white;
+	background-color: #4CAF50;
+	border-radius: 10px;
+	padding: 10px 0px;
+	box-shadow: 1px 2px 5px 5px #bcf5be;
+}
+
+.user-email-span {
+	color: rgb(217, 250, 54);
 }

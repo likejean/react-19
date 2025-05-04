@@ -4,15 +4,17 @@ import React from "react";
 import Sensors from "./components/Sensors";
 import Login from "./components/Login";
 import Sensor from "./components/Sensor";
+import Calibration from "./components/Calibration";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const App = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Sensors />} />
+				<Route path="/sensors" element={<Sensors />} />
 				<Route path="/login" element={<Login />} />
-				<Route path="/sensor" element={<Sensor />} />
+				<Route path="/sensor/:id" element={<Sensor />} />
+				<Route path="/sensor/:id/calibration/:id" element={<Calibration />} />
 			</Routes>
 		</BrowserRouter>	
 	)

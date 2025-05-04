@@ -1,11 +1,15 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { FaCertificate } from 'react-icons/fa6';
+import { Calibration } from '../interfaces/Interface';
+import moment from 'moment';
+
+const unixTimestamp = moment().unix();
 
 const Sensor = () => {
 	const location = useLocation();
 	const sensor = location.state.sensor; // Get the sensor data from the location state
-	console.log(sensor.calibrations); // Log the sensor data to the console for debugging
+	
 	const token = localStorage.getItem("token");
 	return (
 		<div className="container mt-5 w-50">
@@ -17,8 +21,11 @@ const Sensor = () => {
 			<div className="row justify-content-center">
 				<div className="card text-left">
 					<div className="card-body">
-						<h5 className="card-title">Sensor Details</h5>
-						<p className="card-text">This is a detailed view of the sensor.</p>
+						<div className='row text-center mb-5'>
+							<h5 className="card-title">Sensor Details</h5>
+							<p className="card-text">This is a detailed view of the sensor.</p>
+						</div>
+						
 						<p className="card-text">Sensor EID: <span className='sensor-info-span'>{sensor.EID}</span></p>	
 						<p className="card-text">Sensor Description: <span className='sensor-info-span'>{sensor.description}</span></p>
 						<p className="card-text">Sensor Model: <span className='sensor-info-span'>{sensor.model}</span></p>	
@@ -30,19 +37,21 @@ const Sensor = () => {
 						<p className="card-text">This is a list of calibrations for the sensor.</p>
 						
 						<ul className="list-group list-group-flush"></ul>
-							{sensor.calibrations.map((calibration, index: string) => (
-								<div className='row align-content-center my-2 cal-list-item' key={index}>
-									<FaCertificate className='col-1 certificate-icon'/>
-									<span className='col-11'>{calibration.calibrationName}</span>
-								</div>
-									
-							))}
-						<a href="/" className="btn btn-primary my-2">Main Page</a>
+						{sensor.calibrations.length > 0 ? sensor.calibrations.map((calibration: Calibration, index: string) => (
+							<div className='row align-content-center my-2 cal-list-item' key={index}>
+								<Link className='col-1' to={`/sensor/${sensor._id}/calibration/${calibration._id}`} state={{calibration}}>
+									<FaCertificate className={moment.utc(calibration.dueCalibrationDate).unix() > unixTimestamp ? "valid-certificate-icon" : "expired-certificate-icon"}/>
+								</Link>
+								<span className='col-11'>{calibration.calibrationName}</span>
+							</div>
+								
+						)) : <p className='text-danger'>No Calibrations Found</p>}						
 					</div>
 				</div>
 			</div>
-			
-
+			<div className="d-grid gap-2 col-2 mx-auto">
+				<a href="/sensors" className="btn btn-outline-info my-2">Main Page</a>
+			</div>
 		</div>
 	)
 }

@@ -1,44 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { CiSettings } from "react-icons/ci";
 import { CircularProgress } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Sensor } from '../interfaces/Interface';
 
 
-interface Calibation {
-	_id: number;
-	adjustmentsMade: string;
-	calibrationExtended: boolean;
-	calibrationName: string;
-	calibrationRangePecent: number;
-	comment: string;
-	createdAt: string;
-	dueCalibrationDate: string;
-	lastCalibrationDate: string;
-	maxCalibrationExtension: string;
-	proceudreId: string;
-	sensorId: string;
-}
-
-interface Sensor {
-	_id: string;
-	EID: string;
-	calibratedBy: string;
-	calibrationFrequency: string;
-	calibrationPriority: string;
-	calibrations: [Calibation];
-	capacityRange: string;
-	comment: string;
-	createdAt: string;
-	description: string;
-	location: string;
-	model: string;
-	manufacturer: string;
-	type: string;
-	request: {
-		type: string;
-		url: string;
-	}
-}
 
 const token = localStorage.getItem("token");
 
@@ -51,6 +17,11 @@ const Sensors = () => {
 	
 	const [isValidToken, setIsValidToken] = useState<boolean>(false);
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	const userId = location.state ? location.state.userId : localStorage.getItem("userId"); // Get the sensor data from the location state	
+	const userEmail = location.state ? location.state.email : localStorage.getItem("email");
+
 
 	useEffect(() => {
 		
@@ -95,10 +66,9 @@ const Sensors = () => {
 	}, []);	
 
 	
-	const viewCalibrations = (sensorId: string) => {
-		
+	const viewCalibrations = (sensorId: string) => {		
 		const sensor = sensors.find(sensor => sensor._id === sensorId);	
-		navigate("/sensor", { state: { sensor } });
+		navigate(`/sensor/${sensorId}`, { state: { sensor } });
 	}
 
 	
@@ -120,8 +90,9 @@ const Sensors = () => {
 	}
 
 	if (error) {
-		return (
+		return (			
 			<div className='container mt-5'>
+				
 				<div className="row justify-content-center">
 					<h2 className='text-center w-100 login-session-expired'>Login Session Expired</h2>
 					<p className='text-center w-100'>Please login again to view the sensors.</p>					
@@ -137,9 +108,11 @@ const Sensors = () => {
 	
 	return (
 			<div className='container mt-5'>
+				
 				<div className="row justify-content-center">
 					<h1 className='text-center w-100'>Sensors</h1>
-					<table className="table table-striped">
+					<p className='user-login-wrapper text-center'><span className='user-email-span'>{userEmail}</span> logged in</p>
+					<table className="table table-hover">
 						<thead>
 							<tr>
 								<th>No.</th>
