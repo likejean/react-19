@@ -2,6 +2,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import Sensors from "./components/Sensors";
+import Home from "./components/Home";
 import Login from "./components/Login";
 import Sensor from "./components/Sensor";
 import Calibration from "./components/Calibration";
@@ -11,6 +12,7 @@ const App = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
+				<Route path="/" element={<Home />} />
 				<Route path="/sensors" element={<Sensors />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/sensor/:id" element={<Sensor />} />

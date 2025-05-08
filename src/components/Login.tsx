@@ -72,7 +72,7 @@ const Login = () => {
 			<div className="row justify-content-center">
 				<h1 className='text-center'>Login</h1>
 				<form onSubmit={handleLogin}>
-					{!token ?<h2>Login to your account</h2>:<h2>You are still logged in</h2>}
+					{!token ?<h2>Login to your account</h2>:<h2>You are logged in</h2>}
 					<p>Welcome back!</p>
 					<div className="mb-3">
 						<label htmlFor="email" className="form-label">Email address :</label>
@@ -84,8 +84,12 @@ const Login = () => {
 					</div>
 					{!token ? <button type="submit" className="btn btn-primary">LOG IN</button> :
 					<button type="button" onClick={userLogout} className="btn btn-secondary">LOG OUT</button>}
+					
 					<p><br />Demo User: <br />Email: user@example.com <br />Password: password12345</p>
                 </form>
+				<div className="container text-center my-2">
+					<a href="/" className="btn btn-outline-primary">Home Page</a>
+				</div>
 			</div>
 		
 		</div>

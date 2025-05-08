@@ -148,6 +148,9 @@ const Sensors = () => {
 					<div className="container text-center my-2">
 						<a href="/login?reload=true" className="btn btn-primary">User Page</a>
 					</div>
+					<div className="container text-center my-2">
+						<a href="/" className="btn btn-outline-primary">Home Page</a>
+					</div>
 				</div>
 			
 			</div>

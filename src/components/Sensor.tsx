@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { FaCertificate } from 'react-icons/fa6';
 import { Calibration } from '../interfaces/Interface';
@@ -49,8 +49,11 @@ const Sensor = () => {
 					</div>
 				</div>
 			</div>
-			<div className="d-grid gap-2 col-2 mx-auto">
-				<a href="/sensors" className="btn btn-outline-info my-2">Main Page</a>
+			<div className="container text-center my-2">
+				<a href="/sensors" className="btn btn-outline-info my-2">Sensor Table</a>
+			</div>
+			<div className="container text-center my-2">
+				<a href="/" className="btn btn-outline-primary">Home Page</a>
 			</div>
 		</div>
 	)
